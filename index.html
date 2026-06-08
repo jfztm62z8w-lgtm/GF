@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Little Farm — Waterloo, Indiana</title>
+<style>
+  :root {
+    --barn-red: #8b3a3a;
+    --wood: #6b4a36;
+    --wood-dark: #4a3324;
+    --cream: #faf3e6;
+    --tan: #e8d9c3;
+    --moss: #5f7a4f;
+    --moss-dark: #46603a;
+    --ink: #3a2f27;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', 'Iowan Old Style', serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  a { color: inherit; }
+
+  /* Hero */
+  .hero {
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background:
+      linear-gradient(rgba(74,51,36,0.55), rgba(74,51,36,0.55)),
+      repeating-linear-gradient(135deg, #7a5a42 0 40px, #6b4a36 40px 80px);
+    color: var(--cream);
+    position: relative;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 14px;
+    background: var(--moss-dark);
+  }
+  .hero .eyebrow {
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    color: var(--tan);
+  }
+  .hero h1 {
+    font-size: clamp(2.3rem, 6vw, 4.2rem);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+  .hero p.tagline {
+    font-size: clamp(1rem, 2.4vw, 1.35rem);
+    max-width: 640px;
+    margin: 0 auto 2rem auto;
+    color: var(--tan);
+    font-style: italic;
+  }
+  .hero .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+  .badge {
+    border: 1px solid rgba(250,243,230,0.6);
+    border-radius: 999px;
+    padding: 0.45rem 1.1rem;
+    font-size: 0.9rem;
+    background: rgba(250,243,230,0.08);
+    backdrop-filter: blur(2px);
+  }
+
+  /* Section shell */
+  section { padding: 5rem 1.5rem; }
+  .section-inner { max-width: 1080px; margin: 0 auto; }
+  .section-head {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .section-head .kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-size: 0.75rem;
+    color: var(--barn-red);
+    font-weight: 700;
+  }
+  .section-head h2 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin-top: 0.4rem;
+    color: var(--wood-dark);
+  }
+  .section-head p {
+    max-width: 620px;
+    margin: 0.75rem auto 0 auto;
+    color: #5a4a3c;
+  }
+
+  /* About / intro band */
+  .about {
+    background: var(--tan);
+    text-align: center;
+  }
+  .about .section-inner { max-width: 760px; }
+  .about p { font-size: 1.1rem; color: var(--ink); }
+  .about p + p { margin-top: 1rem; }
+
+  /* Animal / area cards */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.75rem;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid var(--tan);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(74,51,36,0.08);
+    display: flex;
+    flex-direction: column;
+  }
+  .card-banner {
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.6rem;
+    color: #fff;
+  }
+  .card-banner.chickens { background: linear-gradient(135deg, #c2783a, #a55d2a); }
+  .card-banner.garden   { background: linear-gradient(135deg, var(--moss), var(--moss-dark)); }
+  .card-banner.goats    { background: linear-gradient(135deg, #9b8468, #76624a); }
+  .card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .card-body h3 {
+    color: var(--wood-dark);
+    font-size: 1.35rem;
+    margin-bottom: 0.4rem;
+  }
+  .status-tag {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+  }
+  .status-tag.now      { background: #e3edda; color: var(--moss-dark); }
+  .status-tag.planned  { background: #f3e6d4; color: var(--barn-red); }
+  .card-body p { color: #5a4a3c; font-size: 0.97rem; }
+
+  /* Gallery */
+  .gallery {
+    background: var(--wood-dark);
+    color: var(--cream);
+  }
+  .gallery .section-head h2 { color: var(--cream); }
+  .gallery .section-head p { color: var(--tan); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+  .gallery-item {
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
+    border: 1px dashed rgba(250,243,230,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(250,243,230,0.6);
+    background: rgba(250,243,230,0.04);
+    padding: 1rem;
+  }
+
+  /* Filler / journal teaser */
+  .journal {
+    background: var(--cream);
+  }
+  .journal .section-inner { max-width: 760px; text-align: center; }
+  .journal .scrap {
+    border: 1px solid var(--tan);
+    border-radius: 14px;
+    padding: 2rem;
+    background: #fff;
+    color: #5a4a3c;
+    font-style: italic;
+  }
+
+  /* Contact / follow */
+  .contact {
+    background: var(--barn-red);
+    color: var(--cream);
+    text-align: center;
+  }
+  .contact .section-head h2 { color: var(--cream); }
+  .contact .section-head p { color: rgba(250,243,230,0.85); }
+  .contact-box {
+    max-width: 520px;
+    margin: 0 auto;
+    border: 1px solid rgba(250,243,230,0.4);
+    border-radius: 14px;
+    padding: 2rem;
+    background: rgba(250,243,230,0.06);
+  }
+  .contact-box .placeholder-line {
+    margin: 0.6rem 0;
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
+    background: rgba(250,243,230,0.1);
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: var(--wood-dark);
+    color: var(--tan);
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="eyebrow">Waterloo · Indiana</div>
+    <h1>Our Little Farm</h1>
+    <p class="tagline">A small homestead just getting started — chickens scratching in the yard, a garden taking shape, and big plans for goats down the road.</p>
+    <div class="badge-row">
+      <span class="badge">🐔 Chickens</span>
+      <span class="badge">🌱 Garden — coming soon</span>
+      <span class="badge">🐐 Goats — on the wishlist</span>
+    </div>
+  </header>
+
+  <section class="about">
+    <div class="section-inner">
+      <p>Welcome! We're a small family farm tucked into Waterloo, Indiana, taking things one project at a time. Right now our flock of chickens runs the show, but we're laying the groundwork (literally) for a garden this season — and dreaming about adding a few goats once the fences and shelter are sorted.</p>
+      <p>This page is our home base for sharing how things grow — check back as we add photos, updates, and more.</p>
+    </div>
+  </section>
+
+  <section class="areas">
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="kicker">Around the Farm</div>
+        <h2>What we're raising &amp; growing</h2>
+        <p>A look at where things stand today, and what's on the horizon.</p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-banner chickens">🐔</div>
+          <div class="card-body">
+            <span class="status-tag now">Up &amp; running</span>
+            <h3>The Flock</h3>
+            <p>Our chickens are the heart of the farm right now — free-ranging, foraging, and keeping us in fresh eggs. More on the coop, the breeds, and daily life with the girls coming soon.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-banner garden">🌱</div>
+          <div class="card-body">
+            <span class="status-tag planned">In the works</span>
+            <h3>The Garden</h3>
+            <p>We're breaking ground on a small garden — planning out beds, picking what to plant first, and figuring out what grows best in our corner of Indiana. Updates as the dirt gets turned.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-banner goats">🐐</div>
+          <div class="card-body">
+            <span class="status-tag planned">Future plans</span>
+            <h3>The Goats</h3>
+            <p>Goats are next on the wishlist once we've got the right space and fencing in place. Follow along as we research breeds and get the farm ready to welcome them.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="kicker">Snapshots</div>
+        <h2>From around the farm</h2>
+        <p>Photo gallery coming soon — these spots are reserved for pictures of the flock, the garden beds, and (eventually) the goats.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">Photo coming soon<br>— The Flock —</div>
+        <div class="gallery-item">Photo coming soon<br>— The Coop —</div>
+        <div class="gallery-item">Photo coming soon<br>— Garden Beds —</div>
+        <div class="gallery-item">Photo coming soon<br>— Fresh Eggs —</div>
+        <div class="gallery-item">Photo coming soon<br>— The Land —</div>
+        <div class="gallery-item">Photo coming soon<br>— Future Goat Pen —</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="journal">
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="kicker">From the Farmhouse</div>
+        <h2>A note from us</h2>
+      </div>
+      <div class="scrap">
+        "Every farm starts somewhere — ours started with a few hens and a lot of curiosity. We're learning as we go, and we're glad you stopped by. Come back soon to see how things are growing."
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="kicker">Stay in Touch</div>
+        <h2>Follow along with the farm</h2>
+        <p>Want updates as the garden grows and the goats arrive? Here's where to find us (add your links and details below).</p>
+      </div>
+      <div class="contact-box">
+        <div class="placeholder-line">📧 Email — add your contact address here</div>
+        <div class="placeholder-line">📷 Instagram / Facebook — add your handle here</div>
+        <div class="placeholder-line">📍 Waterloo, Indiana</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Our Little Farm · Waterloo, Indiana · Made with care, one season at a time
+  </footer>
+
+</body>
+</html>
