@@ -186,6 +186,14 @@
     color: rgba(250,243,230,0.6);
     background: rgba(250,243,230,0.04);
     padding: 1rem;
+    overflow: hidden;
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
   }
 
   /* Filler / journal teaser */
@@ -300,8 +308,8 @@
         <p>Photo gallery coming soon — these spots are reserved for pictures of the flock, the garden beds, and (eventually) the goats.</p>
       </div>
       <div class="gallery-grid">
-        <div class="gallery-item">Photo coming soon<br>— The Flock —</div>
-        <div class="gallery-item">Photo coming soon<br>— The Coop —</div>
+        <div class="gallery-item"><img src="chicken1.jpg" alt="One of the flock — white hen being held"></div>
+        <div class="gallery-item"><img src="chicken2.jpg" alt="One of the flock — golden hen free-ranging"></div>
         <div class="gallery-item">Photo coming soon<br>— Garden Beds —</div>
         <div class="gallery-item">Photo coming soon<br>— Fresh Eggs —</div>
         <div class="gallery-item">Photo coming soon<br>— The Land —</div>
@@ -330,8 +338,7 @@
         <p>Want updates as the garden grows and the goats arrive? Here's where to find us (add your links and details below).</p>
       </div>
       <div class="contact-box">
-        <div class="placeholder-line">📧 Email — add your contact address here</div>
-        <div class="placeholder-line">📷 Instagram / Facebook — add your handle here</div>
+        <div class="placeholder-line">📧 <a href="mailto:contact@garmanfarms.org" style="color:var(--cream);text-decoration:underline;">contact@garmanfarms.org</a></div>
         <div class="placeholder-line">📍 Waterloo, Indiana</div>
       </div>
     </div>
